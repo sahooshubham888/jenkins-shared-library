@@ -1,4 +1,4 @@
-@Library('jenkins-library@master') _
+@Library('library-test') _
 
 pipeline {
     agent any
@@ -6,8 +6,8 @@ pipeline {
         stage('Git Checkout') {
             steps {
             gitCheckout(
-                branch: "master",
-                url: "https://github.com/spring-projects/spring-petclinic.git"
+                branch: "main",
+                url: "https://github.com/sahooshubham888/jenkins-shared-library.git"
             )
             }
     }
