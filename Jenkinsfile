@@ -2,24 +2,19 @@
 
 pipeline {
     agent any
-    stages {
-        stage('Git Checkout') {
-            steps {
-               git branch: "main",
-                credentialsId: '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',
-                url: "https://github.com/sahooshubham888/jenkins-shared-library.git"
-                scmUrl = 'ssh://git@myScmServer.com/repos/'https://github.com/sahooshubham888/jenkins-shared-library.git'
-                serverPort = '8080'
-                developmentServer = 'dev-myproject.echo.com'
-                stagingServer = 'staging-myproject.echo.com'
-                productionServer = 'production-myproject.echo.com'
-        }
+    environment {
+        git branch = 'main'
+        GitCredentials : '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'
+        scmUrl = 'ssh://git@myScmServer.com/repos/https://github.com/sahooshubham888/jenkins-shared-library.git'
+        serverPort = '8080'
+        developmentServer = 'dev-myproject.mycompany.com'
+        stagingServer = 'staging-myproject.mycompany.com'
+        productionServer = 'production-myproject.mycompany.com'
     }
-}
-stages {
+    stages {
         stage('checkout git') {
             steps {
-                git branch: main, credentialsId: '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', url: scmUrl
+                git branch: branch, credentialsId: 'GitCredentials', url: scmUrl
             }
         }
 
@@ -55,23 +50,10 @@ stages {
                 deploy(productionServer, serverPort)
             }
         }
-}
-post {
-    failure {
-     mail to: 'team@example.com', subject: 'Pipeline failed', body: "${env.BUILD_URL}"
     }
-}
-myDeliveryPipeline(branch: 'main', scmUrl: 'ssh://git@myScmServer.com/repos/https://github.com/sahooshubham888/jenkins-shared-library.git',
-                   email: 'team@example.com', serverPort: '8080',
-                   developmentServer: 'dev-myproject.echo.com',
-                   stagingServer: 'staging-myproject.echo.com',
-                   productionServer: 'production-myproject.echo.com')
-myDeliveryPipeline {
-    branch = 'main'
-    scmUrl = 'ssh://git@myScmServer.com/repos/https://github.com/sahooshubham888/jenkins-shared-library.git'
-    email = 'team@example.com'
-    serverPort = '8080'
-    developmentServer = 'dev-myproject.echo.com'
-    stagingServer = 'staging-myproject.echo.com'
-    productionServer = 'production-myproject.echo.com'
+    post {
+        failure {
+            mail to: 'team@example.com', subject: 'Pipeline failed', body: "${env.BUILD_URL}"
+        }
+    }
 }
