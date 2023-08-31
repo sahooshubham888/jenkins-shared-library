@@ -5,7 +5,7 @@ pipeline {
     environment {
         git branch = 'main'
         GitCredentials : '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'
-        scmUrl = 'ssh://git@myScmServer.com/repos/https://github.com/sahooshubham888/jenkins-shared-library.git'
+        // scmUrl = 'ssh://git@myScmServer.com/repos/https://github.com/sahooshubham888/jenkins-shared-library.git'
         url : 'https://github.com/sahooshubham888/jenkins-shared-library.git'
         serverPort = '8080'
         developmentServer = 'dev-myproject.mycompany.com'
@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('checkout git') {
             steps {
-                git branch: branch, credentialsId: 'GitCredentials', url: scmUrl
+                git branch: branch, credentialsId: 'GitCredentials', url: url
             }
         }
 
