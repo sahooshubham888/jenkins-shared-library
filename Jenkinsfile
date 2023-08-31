@@ -8,21 +8,14 @@ pipeline {
                git branch: "main",
                 credentialsId: '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',
                 url: "https://github.com/sahooshubham888/jenkins-shared-library.git"
-            }
-    }
+                scmUrl = 'ssh://git@myScmServer.com/repos/'https://github.com/sahooshubham888/jenkins-shared-library.git'
+                serverPort = '8080'
+                developmentServer = 'dev-myproject.echo.com'
+                stagingServer = 'staging-myproject.echo.com'
+                productionServer = 'production-myproject.echo.com'
+           }
     }
 }
-
-pipeline {
-    agent any
-    environment {
-        branch = 'main'
-        scmUrl = 'ssh://git@myScmServer.com/repos/'https://github.com/sahooshubham888/jenkins-shared-library.git'
-        serverPort = '8080'
-        developmentServer = 'dev-myproject.echo.com'
-        stagingServer = 'staging-myproject.echo.com'
-        productionServer = 'production-myproject.echo.com'
-    }
     stages {
         stage('checkout git') {
             steps {
