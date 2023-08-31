@@ -16,7 +16,7 @@ pipeline {
            }
     }
 }
-    stages {
+stages {
         stage('checkout git') {
             steps {
                 git branch: main, credentialsId: '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', url: scmUrl
