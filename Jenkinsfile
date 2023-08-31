@@ -6,6 +6,7 @@ pipeline {
         git branch = 'main'
         GitCredentials : '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'
         scmUrl = 'ssh://git@myScmServer.com/repos/https://github.com/sahooshubham888/jenkins-shared-library.git'
+        url : 'https://github.com/sahooshubham888/jenkins-shared-library.git'
         serverPort = '8080'
         developmentServer = 'dev-myproject.mycompany.com'
         stagingServer = 'staging-myproject.mycompany.com'
