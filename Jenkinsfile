@@ -13,7 +13,7 @@ pipeline {
                 developmentServer = 'dev-myproject.echo.com'
                 stagingServer = 'staging-myproject.echo.com'
                 productionServer = 'production-myproject.echo.com'
-           }
+        }
     }
 }
 stages {
@@ -55,21 +55,17 @@ stages {
                 deploy(productionServer, serverPort)
             }
         }
-    }
-    post {
-        failure {
-            mail to: 'team@example.com', subject: 'Pipeline failed', body: "${env.BUILD_URL}"
-        }
+}
+post {
+    failure {
+     mail to: 'team@example.com', subject: 'Pipeline failed', body: "${env.BUILD_URL}"
     }
 }
-
 myDeliveryPipeline(branch: 'main', scmUrl: 'ssh://git@myScmServer.com/repos/https://github.com/sahooshubham888/jenkins-shared-library.git',
                    email: 'team@example.com', serverPort: '8080',
                    developmentServer: 'dev-myproject.echo.com',
                    stagingServer: 'staging-myproject.echo.com',
                    productionServer: 'production-myproject.echo.com')
-
-
 myDeliveryPipeline {
     branch = 'main'
     scmUrl = 'ssh://git@myScmServer.com/repos/https://github.com/sahooshubham888/jenkins-shared-library.git'
