@@ -7,6 +7,7 @@ pipeline {
             steps {
             gitCheckout(
                 branch: "main",
+                credentialsId: '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',
                 url: "https://github.com/sahooshubham888/jenkins-shared-library.git"
             )
             }
