@@ -5,11 +5,9 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-            gitCheckout(
-                branch: "main",
+               git branch: "main",
                 credentialsId: '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',
                 url: "https://github.com/sahooshubham888/jenkins-shared-library.git"
-            )
             }
     }
     }
