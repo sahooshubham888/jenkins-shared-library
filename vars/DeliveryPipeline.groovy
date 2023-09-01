@@ -59,6 +59,6 @@ def call(body) {
 
     pipeline {
         // our complete declarative pipeline can go in here
-        ...
+        // ...
     }
 }
