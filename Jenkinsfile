@@ -1,38 +1,31 @@
 @Library('library-test') _
 
-pipeline{
-    agent any
-    stages{
-       stage('checkout'){
-           steps{
-               helloWorld()
-           }
-        }
-        stage ('build using maven'){
-           steps {
-               mavenBuild()
-           }
+pipeline {
+       agent any
+       tools {
+           maven 'Maven 3.5.0'
+           jdk 'jdk8'
        }
-       stage("Tools initialization") {
-           steps {
-                    "mvn --version"
-                    "java -version"
-                }
-        }
-        stage("Cleaning workspace") {
-           steps {
-                    sh "mvn clean"
-                }
-        }
-        stage("Running Testcase") {
-            steps {
-                    sh "mvn test"
-                }
-        }
-        stage("Packing Application") {
-            steps {
-                    sh "mvn package -DskipTests"
-                }
+       stages {
+           stage("Tools initialization") {
+               steps {
+                   sh "mvn --version"
+                   sh "java -version"
+               }
+           }
+           stage("Cleaning workspace") {
+               steps {
+                   sh "mvn clean"
+               }
+           }
+           stage("Running Testcase") {
+              steps {
+                   sh "mvn test"
+               }
+           }
+           stage("Packing Application") {
+               steps {
+                   sh "mvn package -DskipTests"
             }
         }
     }
