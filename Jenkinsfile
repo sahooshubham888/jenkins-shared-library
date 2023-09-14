@@ -2,6 +2,7 @@
 
 pipeline {
        agent any
+       }
        stages{
           stage('checkout'){
               steps{
@@ -13,8 +14,7 @@ pipeline {
                mavenBuild()
            }
        }
-       }
-       stages {
+       stages{
            stage("Tools initialization") {
                steps {
                    sh "mvn --version"
