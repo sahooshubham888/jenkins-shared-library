@@ -2,41 +2,37 @@
 
 pipeline {
        agent any
-    //    tools {
-    //        maven 'Maven 3.5.0'
-    //        jdk 'jdk8'
-    //    }
        stages {
           stage('checkout'){
              steps{
                  helloWorld()
              }
-        }
-        stage ('build using maven'){
+          }
+          stage ('build using maven'){
              steps {
                  mavenBuild()
              }
-        }
-        stage("Tools initialization") {
+           }
+           stage("Tools initialization") {
                steps {
                    sh "mvn --version"
                    sh "java -version"
                }
-        }
-        stage("Cleaning workspace") {
+           }
+           stage("Cleaning workspace") {
                steps {
                    sh "mvn clean"
                }
-        }
-        stage("Running Testcase") {
+           }
+           stage("Running Testcase") {
               steps {
                    sh "mvn test"
                }
-        }
-        stage("Packing Application") {
+           }
+           stage("Packing Application") {
                steps {
                    sh "mvn package -DskipTests"
                }
-        }
-    }
-}
+           }
+       }
+ }
