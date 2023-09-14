@@ -24,12 +24,6 @@ pipeline {
                    sh "java -version"
                }
            }
-           stage("Checkout Code") {
-               steps {
-                   git branch: 'master',
-                       url: "https://github.com/iamvickyav/spring-boot-data-H2-embedded.git"
-               }
-           }
            stage("Cleaning workspace") {
                steps {
                    sh "mvn clean"
