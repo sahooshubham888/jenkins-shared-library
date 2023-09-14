@@ -15,26 +15,26 @@ pipeline{
 	   }
 	   stages {
            stage("Tools initialization") {
-              # steps {
+            //    steps {
                    sh "mvn --version"
                    sh "java -version"
-              # }
+            //    }
            }
 		   }
            stage("Cleaning workspace") {
-            #   steps {
+            //    steps {
                    sh "mvn clean"
-               }
-			 #  }
+            //    }
+			    }
            stage("Running Testcase") {
-             # steps {
+            //   steps {
                    sh "mvn test"
-            #   }
+            //    }
            }
 		   stage("Packing Application") {
-              # steps {
+            //    steps {
                    sh "mvn package -DskipTests"
-             #  }
+            //    }
            }
 	}
 }
