@@ -26,12 +26,5 @@ pipeline {
           steps {
                sh "mvn test"
             }
-        }
     }
-    stage("Packing Application") {
-          steps {
-               sh "mvn package -DskipTests"
-            }
-        }
-    }
-}
+
