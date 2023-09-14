@@ -7,34 +7,33 @@ pipeline{
            steps{
                helloWorld()
            }
-       }
-       stage ('build using maven'){
+        }
+        stage ('build using maven'){
            steps {
                mavenBuild()
            }
        }
-       stages {
-            stage("Tools initialization") {
-                steps {
+       stage("Tools initialization") {
+           steps {
                     "mvn --version"
                     "java -version"
                 }
-            }
-            stage("Cleaning workspace") {
-                steps {
+        }
+        stage("Cleaning workspace") {
+           steps {
                     sh "mvn clean"
                 }
-            }
-            stage("Running Testcase") {
-               steps {
+        }
+        stage("Running Testcase") {
+            steps {
                     sh "mvn test"
                 }
-            }
-            stage("Packing Application") {
-                steps {
+        }
+        stage("Packing Application") {
+            steps {
                     sh "mvn package -DskipTests"
                 }
             }
         }
     }
- }
+}
