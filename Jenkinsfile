@@ -1,6 +1,7 @@
 @Library('library-test') _
 
 pipeline {
+      agent any 
       stages{
           stage('checkout'){
               steps{
